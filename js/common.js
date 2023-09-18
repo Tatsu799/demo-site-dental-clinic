@@ -1,27 +1,7 @@
 'use strict';
 
-// window.onunload = function () { };
-// function size_check() {
-//     w = window.innerWidth ? window.innerWidth : $(window).width();
-//     h = window.innerHeight ? window.innerHeight : $(window).height();
-// }
-
-let windowSize = $(window).width();
-$(function () {
-    if (windowSize > 767) {
-    } else {
-    $("header .drawer").click(function () {
-        $('body').toggleClass('nav-open');
-        $('header .header-wrapper__nav').fadeToggle(200);
-    }); 
-    $(".header-wrapper__nav__list__item a").click(function () {
-        $('body').toggleClass('nav-open');
-        $('header .header-wrapper__nav').fadeToggle(200);
-    });
-    }
-});
-
 //スクロールした際にアニメーションを実行する。
+let windowSize = $(window).width();
 $(function () {
     if (windowSize > 769) {
     } else {
