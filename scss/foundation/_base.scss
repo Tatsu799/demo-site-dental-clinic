@@ -49,7 +49,7 @@ header {
             border-top: solid 4px $main-blue;
             cursor: pointer;
             z-index: 9999;
-            @include mq(sp_2) {
+            @include mq(sp_1) {
                 top: 13px;
                 right: 15px;
             }
@@ -75,16 +75,17 @@ header {
             top: 14px;
         }
         .header-wrapper {
+            width: 100%;
             &__logo {
                 width: 20%;
                 margin-right: auto;
-                z-index: 9999;
+                display: inline-block;
                 @include mq(sp_1) {
                     width: 40%;
                 }
             }
             img {
-                display: inline;
+                display: inline-block;
                 width: 100%;
             }
             &__nav {
@@ -103,7 +104,9 @@ header {
                     position: absolute;
                     top: 50%;
                     left: 50%;
-                    transform: translateY(-50%) translateX(-50%);
+                    -webkit-transform: translateY(-50%) translateX(-50%);
+                        -ms-transform: translateY(-50%) translateX(-50%);
+                            transform: translateY(-50%) translateX(-50%);
                     &__item {
                         width: 100%;
                         margin: 5% auto;
@@ -125,11 +128,15 @@ body.nav-open header .drawer {
         border-top: 0;
         &::before {
             top: 9px;
-            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                    transform: rotate(45deg);
         }
         &::after {
             top: 9px;
-            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+                -ms-transform: rotate(-45deg);
+                    transform: rotate(-45deg);
         }
     }
 }
@@ -139,9 +146,15 @@ body.nav-open header .drawer {
         position: fixed;
         z-index: 9999;
         width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: flex-end;
-        align-items: center;
+        -webkit-box-pack: end;
+            -ms-flex-pack: end;
+                justify-content: flex-end;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         background: rgba(255, 255, 255, 0.8);
         &__logo {
             width: 20%;
@@ -160,15 +173,33 @@ body.nav-open header .drawer {
                         display: block;
                     }
                 }
+                display: -webkit-box;
+                display: -ms-flexbox;
                 display: flex;
-                justify-content: flex-end;
+                -webkit-box-pack: end;
+                    -ms-flex-pack: end;
+                        justify-content: flex-end;
                 &__item {
-                    padding: 0 2% 0 2%;
+                    padding: 0 15px 0 15px;
+                    @include mq(pc_max) {
+                        padding: 0 10px 0 10px;
+                    }
+                    @include mq(sp_1) {
+                        margin: 0 auto;
+                        width: auto;
+                        height: auto;
+                        line-height: 2;
+                    }
                     a {
                         width: 100%;
                         color: $main-blue;
                         font-weight: 600;
+                        @include mq(sp_1) {
+                            font-size: 1rem;
+                        }
                         &:hover {
+                            -webkit-transition: all 0.5s ease-in-out;
+                            -o-transition: all 0.5s ease-in-out;
                             transition: all 0.5s ease-in-out; 
                             opacity: 0.5;
                         }
@@ -200,13 +231,15 @@ body.nav-open header .drawer {
                 vertical-align: top;
                 background: no-repeat;
                 aspect-ratio: 2 / 1;
-                animation: slide-images 8s 0s infinite;
+                -webkit-animation: slide-images 8s 0s infinite;
+                        animation: slide-images 8s 0s infinite;
                 z-index: 0;
                 opacity: 0;
             }
             .img-1 {
                 aspect-ratio: 2 / 1;
-                animation-delay: 0s;
+                -webkit-animation-delay: 0s;
+                        animation-delay: 0s;
                 -o-object-fit: cover;
                 object-fit: cover;
                 width: 100%;
@@ -214,7 +247,8 @@ body.nav-open header .drawer {
             }
             .img-2 {
                 aspect-ratio: 2 / 1;
-                animation-delay: 3s;
+                -webkit-animation-delay: 3s;
+                        animation-delay: 3s;
                 -o-object-fit: cover;
                 object-fit: cover;
                 width: 100%;
@@ -222,7 +256,8 @@ body.nav-open header .drawer {
             }
             .img-3 {
                 aspect-ratio: 2 / 1;
-                animation-delay: 6s;
+                -webkit-animation-delay: 6s;
+                        animation-delay: 6s;
                 -o-object-fit: cover;
                 object-fit: cover;
                 width: 100%;
@@ -310,28 +345,32 @@ body.nav-open header .drawer {
             display: block;
         }
         &__box {
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
-            align-items: center;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
             height: 45rem;
             @include mq(tab) {
                 display: block;
-                width: 90%;
+                width: auto;
                 height: 45rem;
             }
             &__left {
                 width: 50%;
                 position: absolute;
-                        content: "";
-                        top: 0;
-                        z-index: -5;
-                        @include mq(tab) {
-                            width: 100%;
-                            top: -28%;
-                        }
-                        @include mq(sp_1) {
-                            width: 100%;
-                            top: -5%;
-                        }
+                content: "";
+                top: 0;
+                z-index: -5;
+                @include mq(tab) {
+                    width: auto;   //
+                    top: -28%;
+                }
+                @include mq(sp_1) {
+                    width: 100%;
+                    top: -5%;
+                }
                 &__box {
                     width: 70%;
                     height: 100%;
@@ -397,10 +436,12 @@ body.nav-open header .drawer {
                     img {
                         width: 100%;
                         height: 100%;
-                        object-fit: cover;
+                        -o-object-fit: cover;
+                           object-fit: cover;
                         aspect-ratio: 2 / 1;
                         @include mq(tab) {
-                            object-position: 60%;
+                            -o-object-position: 60%;
+                               object-position: 60%;
                         }
                     }
                 }
@@ -413,8 +454,12 @@ body.nav-open header .drawer {
     &-wrapper {
         &__box {
             width: 100%;
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
-            justify-content: center;
+            -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                    justify-content: center;
             margin-top: 8%;
             @include mq(tab) {
                 display: block;
@@ -425,15 +470,17 @@ body.nav-open header .drawer {
                     width: 45%;
                 }
                 @include mq(tab) {
-                    width: 100%;
+                    width: auto;
                 }
                 img {
                     width: 80%;
                     height: 80%;
                     border-radius: 50px;
-                    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
+                    -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
+                            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
                     aspect-ratio: 2 / 1;
-                    object-fit: cover;
+                    -o-object-fit: cover;
+                       object-fit: cover;
                     @include mq(pc_max) {
                         width: 90%;
                     }
@@ -455,8 +502,12 @@ body.nav-open header .drawer {
                     margin-top: 5%;
                 }
                 &__con-1 {
+                    display: -webkit-box;
+                    display: -ms-flexbox;
                     display: flex;
-                    justify-content: space-evenly;
+                    -webkit-box-pack: space-evenly;
+                        -ms-flex-pack: space-evenly;
+                            justify-content: space-evenly;
                     @include mq(sp_1) {
                         display: block;
                     }
@@ -542,8 +593,12 @@ body.nav-open header .drawer {
                     }
                 }
                 &__con-2 {
+                    display: -webkit-box;
+                    display: -ms-flexbox;
                     display: flex;
-                    align-items: center;
+                    -webkit-box-align: center;
+                        -ms-flex-align: center;
+                            align-items: center;
                     margin: 3rem 0 1rem 0;
                     @include mq(sp_1) {
                         display: block;
@@ -567,14 +622,19 @@ body.nav-open header .drawer {
                         }
                     }
                     &__phone {
+                        display: -webkit-box;
+                        display: -ms-flexbox;
                         display: flex;
-                        align-items: center;
+                        -webkit-box-align: center;
+                            -ms-flex-align: center;
+                                align-items: center;
                         padding-top: 3%;
                     }
                     img {
                         width: 2.5rem;
                         height: 2.5rem;
-                        object-fit: contain;
+                        -o-object-fit: contain;
+                           object-fit: contain;
                         @include mq(sp_1) {
                             width: 2rem;
                             height: 2rem;
@@ -605,8 +665,12 @@ body.nav-open header .drawer {
         margin-bottom: 8%;
     }
     &__box {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: space-evenly;
+        -webkit-box-pack: space-evenly;
+            -ms-flex-pack: space-evenly;
+                justify-content: space-evenly;
         width: 100%;
         margin-top: 5%;
         @include mq(tab) {
@@ -621,9 +685,11 @@ body.nav-open header .drawer {
                 width: 80%;
                 height: 80%;
                 margin-left: 10%;
-                object-fit: cover;
+                -o-object-fit: cover;
+                   object-fit: cover;
                 border-radius: 50px;
-                box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25); 
+                -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
+                        box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25); 
                 @include mq(tab) {
                     width: 100%;
                     height: 100%;
@@ -660,13 +726,13 @@ body.nav-open header .drawer {
                     width: 30%;
                     font-size: 5.5rem;
                     color: $yellow;
+                    @include mq(tab) {
+                        width: 15%;
+                    }
                     @include mq(sp_1) {
                         top: 13%;
                         left: 68%;
-                    }
-                    @include mq(sp_2) {
-                        width: 35%;
-                        font-size: 5rem;
+                        width: 30%;
                     }
                 }
                 p {
@@ -685,7 +751,7 @@ body.nav-open header .drawer {
                         background-color: $sub-blue;
                         border: none;
                         border-radius: 50px;
-                        padding: 0.5rem;
+                        padding: 0.8rem;
                         text-align: center;
                         color: #fff;
                         font-weight: 500;
@@ -693,6 +759,8 @@ body.nav-open header .drawer {
                             color: $sub-blue;
                             background-color: #fff;
                             border: solid 1px $sub-blue;
+                            -webkit-transition: all 0.3s ease-in-out;
+                            -o-transition: all 0.3s ease-in-out;
                             transition: all 0.3s ease-in-out;
                         }
                     }
@@ -701,7 +769,10 @@ body.nav-open header .drawer {
         }
     }
     .__rev {
-        flex-direction: row-reverse;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: reverse;
+            -ms-flex-direction: row-reverse;
+                flex-direction: row-reverse;
         .feature-wrapper__box__left img {
             margin-left: unset;
             width: 95%;
@@ -723,10 +794,17 @@ body.nav-open header .drawer {
 .medical-wrapper {
     margin: 0 auto;
     &__box {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
         width: 100%;
         height: 100%;
         margin-bottom: 3rem;
@@ -736,7 +814,10 @@ body.nav-open header .drawer {
             border: solid 1px $sub-blue;
             border-radius: 25px;
             margin: 5% 3% 5% 3%;
-            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
+            -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
+                    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
+            -webkit-transition: all 0.5s ease-in-out;
+            -o-transition: all 0.5s ease-in-out;
             transition: all 0.5s ease-in-out;
             @include mq(tab) {
                 width: 40%;
@@ -746,7 +827,11 @@ body.nav-open header .drawer {
                 width: 100%;
             }
             &:hover {
-                transform: scale(1.1);
+                -webkit-transform: scale(1.1);
+                    -ms-transform: scale(1.1);
+                        transform: scale(1.1);
+                -webkit-transition: all 0.3s ease-in-out;
+                -o-transition: all 0.3s ease-in-out;
                 transition: all 0.3s ease-in-out;
             }
             h3 {
@@ -802,8 +887,12 @@ body.nav-open header .drawer {
             z-index: 15;
         }
         &__box {
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
-            justify-content: space-evenly;
+            -webkit-box-pack: space-evenly;
+                -ms-flex-pack: space-evenly;
+                    justify-content: space-evenly;
             position: relative;
             z-index: 20;
             @include mq(tab) {
@@ -818,10 +907,12 @@ body.nav-open header .drawer {
                 img {
                     width: 100%;
                     height: 100%;
-                    object-fit: cover;
+                    -o-object-fit: cover;
+                       object-fit: cover;
                     vertical-align: top;
                     border-radius: 50px;
-                    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25); 
+                    -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
+                            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25); 
                 }
                 &__con {
                     width: 90%;
@@ -830,7 +921,8 @@ body.nav-open header .drawer {
                     margin-bottom: 5%;
                     padding: 5% 3% 8% 3%;
                     background-color: #fff;
-                    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
+                    -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
+                            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
                     @include mq(tab) {
                         width: auto;
                     }
@@ -862,7 +954,8 @@ body.nav-open header .drawer {
                     width: 100%;
                     height: 100%;
                     background-color: #fff;
-                    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
+                    -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
+                            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
                     h3 {
                         font-size: 1.3rem;
                         color: $sub-blue;
@@ -899,9 +992,15 @@ body.nav-open header .drawer {
             padding-bottom: 6%;
         }
         &__box {
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
-            justify-content: space-evenly;
-            align-items: center;
+            -webkit-box-pack: space-evenly;
+                -ms-flex-pack: space-evenly;
+                    justify-content: space-evenly;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
             width: 100%;
             height: 100%;
             @include mq(tab) {
@@ -923,8 +1022,12 @@ body.nav-open header .drawer {
                     width: 100%;
                 }
                 &__con {
+                    display: -webkit-box;
+                    display: -ms-flexbox;
                     display: flex;
-                    align-items: center;
+                    -webkit-box-align: center;
+                        -ms-flex-align: center;
+                            align-items: center;
                     width: 90%;
                     margin-top: 1.5rem;
                     margin-left: 8%;
@@ -969,8 +1072,12 @@ body.nav-open header .drawer {
         height: 35rem;
     }
     &-wrapper {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: space-between;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
         padding-top: 2%;
         padding-left: 2%;
         padding-bottom: 4%;
@@ -1022,9 +1129,15 @@ body.nav-open header .drawer {
                 }
                 &__list {
                     @include mq(tab) {
+                        display: -webkit-box;
+                        display: -ms-flexbox;
                         display: flex;
-                        flex-direction: column;
-                        flex-wrap: wrap;
+                        -webkit-box-orient: vertical;
+                        -webkit-box-direction: normal;
+                            -ms-flex-direction: column;
+                                flex-direction: column;
+                        -ms-flex-wrap: wrap;
+                            flex-wrap: wrap;
                         height: 13rem;
                     }
                     @include mq(sp_1) {
@@ -1042,6 +1155,8 @@ body.nav-open header .drawer {
                             display: inline-block;
                             color: #fff;
                             &:hover {
+                                -webkit-transition: all 0.5s ease-in-out;
+                                -o-transition: all 0.5s ease-in-out;
                                 transition: all 0.5s ease-in-out;
                                 opacity: 0.5;
                             }
@@ -1069,8 +1184,12 @@ body.nav-open header .drawer {
                 }
             }
             &__phone {
+                display: -webkit-box;
+                display: -ms-flexbox;
                 display: flex;
-                align-items: center;
+                -webkit-box-align: center;
+                    -ms-flex-align: center;
+                        align-items: center;
                 margin-bottom: 2%;
                 @include mq(sp_1) {
                     margin-bottom: 5%;
@@ -1079,7 +1198,8 @@ body.nav-open header .drawer {
             img {
                 width: 2rem;
                 height: 2rem;
-                object-fit: contain;
+                -o-object-fit: contain;
+                   object-fit: contain;
                 padding-right: 0.5rem;
                 @include mq(sp_1) {
                     width: 1.5rem;
@@ -1162,20 +1282,21 @@ body.nav-open header .drawer {
 
 // animation
 .fadeUp {
-    animation: fadeUpAnime 0.8s forwards;
+    -webkit-animation: fadeUpAnime 0.8s forwards;
+            animation: fadeUpAnime 0.8s forwards;
     opacity: 0;
 }
 
 .fadeLeft {
-    animation: fadeLeftAnime 0.8s forwards;
+    -webkit-animation: fadeLeftAnime 0.8s forwards;
+            animation: fadeLeftAnime 0.8s forwards;
     opacity: 0;
-    overflow: hidden;
 }
 
 .fadeRight {
-    animation: fadeRightAnime 0.8s forwards;
+    -webkit-animation: fadeRightAnime 0.8s forwards;
+            animation: fadeRightAnime 0.8s forwards;
     opacity: 0;
-    overflow: hidden;
 }
 
 .fadeUpTrigger,
@@ -1184,39 +1305,87 @@ body.nav-open header .drawer {
     opacity: 0;
 }
 
-@keyframes fadeUpAnime {
+@-webkit-keyframes fadeUpAnime {
     from {
         opacity: 0;
-        transform: translateY(100px);
+        -webkit-transform: translateY(100px);
+                transform: translateY(100px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
+    }
+}
+
+@keyframes fadeUpAnime {
+    from {
+        opacity: 0;
+        -webkit-transform: translateY(100px);
+                transform: translateY(100px);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
+    }
+}
+
+@-webkit-keyframes fadeLeftAnime {
+    from {
+        opacity: 0;
+        -webkit-transform: translateX(100px);
+                transform: translateX(100px);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0);
     }
 }
 
 @keyframes fadeLeftAnime {
     from {
         opacity: 0;
-        transform: translateX(100px);
+        -webkit-transform: translateX(100px);
+                transform: translateX(100px);
     }
 
     to {
         opacity: 1;
-        transform: translateX(0);
+        -webkit-transform: translateX(0);
+                transform: translateX(0);
+    }
+}
+
+    @-webkit-keyframes fadeRightAnime {
+    from {
+        opacity: 0;
+        -webkit-transform: translateX(-100px);
+                transform: translateX(-100px);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+                transform: translateX(0);
     }
 }
 
     @keyframes fadeRightAnime {
     from {
         opacity: 0;
-        transform: translateX(-100px);
+        -webkit-transform: translateX(-100px);
+                transform: translateX(-100px);
     }
 
     to {
         opacity: 1;
-        transform: translateX(0);
+        -webkit-transform: translateX(0);
+                transform: translateX(0);
     }
 }
 
