@@ -1,1 +1,1 @@
-# demo-site-dentalclinic
+# samplesite:-Dental Clinic
